@@ -1,6 +1,6 @@
 package com.gtunes
 
 class ArtistController {
-
-    def index() { }
+    def index() {}
+    def display() {}
 }
