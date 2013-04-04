@@ -1,3 +1,17 @@
+/*
+
+# datasource attributes
+
+• driverClassName: This is the class name of the JDBC driver.
+• username: This is the username used to establish a JDBC connection.
+• password: This is the password used to establish a JDBC connection.
+• url: This is the JDBC URL of the database.
+• dbCreate: This specifies whether to autogenerate the database from the domain model.
+• pooled: This specifies whether to use a pool of connections (it defaults to true).
+• conf igClass: This is the class that you use to configure Hibernate.
+• logSql: This setting enables SQL logging.
+• dialect: This is a string or class that represents the Hibernate dialect used to communicate with the database.
+*/
 dataSource {
     pooled = true
     driverClassName = "org.h2.Driver"
@@ -41,3 +55,5 @@ environments {
         }
     }
 }
+
+
