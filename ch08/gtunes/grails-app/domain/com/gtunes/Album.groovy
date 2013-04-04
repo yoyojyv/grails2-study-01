@@ -2,6 +2,8 @@ package com.gtunes
 
 class Album {
 
+    static searchable = [only: ['genre', 'title']]
+
     String title
     Integer year
     String genre

@@ -2,6 +2,8 @@ package com.gtunes
 
 class Song {
 
+    static searchable = [only: ['genre', 'title']]
+
     Date dateCreated
     Date lastUpdated
 

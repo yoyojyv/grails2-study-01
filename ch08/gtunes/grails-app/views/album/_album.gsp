@@ -1,5 +1,8 @@
-<div id="album${album.id}" class="album">
+<div id="album${album.id}" class="album" style="display: none;">
 	<div class="albumDetails">
+        <div class="albumArt">
+            <music:albumArt artist="${artist}" album="${album}"/>
+        </div>
 		<div class="artistName">${artist.name} (${album.year})</div>
 		<div class="albumInfo">
 			Genre: ${album.genre ?: 'Other'}<br>

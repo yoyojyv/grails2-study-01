@@ -2,6 +2,8 @@ package com.gtunes
 
 class Artist {
 
+    static searchable = [only: ['name']]
+
     Date dateCreated
     Date lastUpdated
 

@@ -13,6 +13,9 @@
                 <g:link controller="store" action="shop">Back to Store</g:link>
             </div>
         </div>
+        <g:javascript>
+            $('#album${album.id}').fadeIn('slow');
+        </g:javascript>
 	</body>
 	
 </html>

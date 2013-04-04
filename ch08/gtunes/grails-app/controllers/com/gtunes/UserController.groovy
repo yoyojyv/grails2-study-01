@@ -6,14 +6,14 @@ class UserController {
         if(request.method == 'POST') {
             if(!cmd.hasErrors()) {
                 session.user = cmd.getUser()
-                redirect controller:'store'
+                render template: '/user/welcomeMessage'
             }
             else {
-                render view:'/store/index', model:[loginCmd:cmd]
+                render template: 'loginBox', model: [loginCmd: cmd]
             }
         }
         else {
-            render view:'/store/index'
+            render template: 'loginBox'
         }
     }
 

@@ -16,40 +16,28 @@
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'gtunes.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <g:layoutHead/>
     <r:layoutResources />
 </head>
 <body class="application">
 
-<div id="container">
-    <div id="spinner" class="spinner" style="display:none;">
-        <img src="${createLinkTo(dir:'images',file:'spinner.gif')}" alt="Spinner" />
+    <div id="container">
+         <div id="spinner" class="spinner" style="display:none;">
+            <img src="${createLinkTo(dir:'images',file:'spinner.gif')}" alt="Spinner" />
+        </div>
+        <div id="main">
+            <g:if test="${session?.user}">
+                <g:render template="/user/welcomeMessage"/>
+            </g:if>
+            <g:layoutBody />
+            <g:javascript library="application"/>
+        </div>
+
+        <footer id="footer">
+            © gTunes 2012
+        </footer>
     </div>
-
-    <header id="header">
-        <h1 id="logo"><a href="${createLink(uri: '/')}">gTune</a></h1>
-        <g:if test="${session?.user}">
-            <div class="message notice">
-                Welcome back <span id="userFirstName">${session?.user?.firstName}!</span>
-                <a href="#">Profile</a> | <g:link controller="user" action="logout">Logout</g:link><br />
-                You have purchased (${session.user.purchasedSongs?.size() ?: 0}) songs.<br>
-            </div>
-            <ul>
-                <li><g:link controller="user" action="music">My Music</g:link></li>
-                <li><g:link controller="store" action="shop">The Store</g:link></li>
-            </ul>
-        </g:if>
-
-    </header>
-
-    <div id="main">
-        <g:layoutBody />
-    </div>
-
-    <footer id="footer">
-        © gTunes 2012
-    </footer>
-</div>
-<r:layoutResources />
+    <r:layoutResources />
 </body>
 </html>
