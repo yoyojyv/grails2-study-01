@@ -10,9 +10,8 @@ class Song {
     Integer year
     Integer trackNumber
     Integer duration
-
-    Album album
     Artist artist
+    static belongsTo = [album: Album]
 
     static constraints = {
         title blank: false
