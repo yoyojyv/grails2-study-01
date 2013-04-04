@@ -1,25 +1,43 @@
 package com.gtunes
 
-
-
+import grails.test.mixin.domain.DomainClassUnitTestMixin
 import org.junit.*
 import grails.test.mixin.*
 
 
+///**
+// * This is book contents.
+// */
+//@TestFor(AlbumController)
+//@Mock(Album)
+//class AlbumControllerTests {
+//    void testListAction() {
+//        new Album(title: 'Trilogy').save()
+//        new Album(title: 'Tarkus').save()
+//        def model = controller.list()
+//        assert model.albumInstanceList?.size() == 2
+//    }
+//}
+
+/**
+ * This is book source.
+ */
 @TestFor(AlbumController)
 @TestMixin(DomainClassUnitTestMixin)
 class AlbumControllerTests {
 
     void testListAction() {
-        /*
-        Mock the Album domain class and provide a couple of Maps
-        that will be used to instantiate instances of the Album
-        class and add them to the unit test datastore.
-         */
+
+        // Mock the Album domain class and provide a couple of Maps
+        // that will be used to instantiate instances of the Album
+        // class and add them to the unit test datastore.
         mockDomain(Album, [[title: 'Trilogy', year: 1972, genre: 'Prog Rock'], [title: 'Tarkus', year: 1971, genre: 'Prog Rock']])
 
         def model = controller.list()
-        assert model.albumList?.size() == 2
+
+        // change albumList ->  albumInstanceList
+        // assert model.albumList?.size() == 2
+        assert model.albumInstanceList?.size() == 2
     }
 }
 
