@@ -11,7 +11,7 @@
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
 
-grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
+grails.project.groupId = 'com.gtunes' // change this to alter the default package name and Maven publishing destination
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
 grails.mime.use.accept.header = false
 grails.mime.types = [
@@ -72,20 +72,60 @@ environments {
 // log4j configuration
 log4j = {
     // Example of changing the log pattern for the default console appender:
-    //
-    //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-    //}
+    appenders {
+        // console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
+        console     name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
+        rollingFile name:"appLog", layout:pattern(conversionPattern: '%c{2} %m%n'), maxFileSize:1024, fileName:"${System.properties.'user.home'}/hallyu-vendor.log"
+    }
+
+    // debug "grails.app"
 
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers
-           'org.codehaus.groovy.grails.web.pages',          // GSP
-           'org.codehaus.groovy.grails.web.sitemesh',       // layouts
-           'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
-           'org.codehaus.groovy.grails.web.mapping',        // URL mapping
-           'org.codehaus.groovy.grails.commons',            // core / classloading
-           'org.codehaus.groovy.grails.plugins',            // plugins
-           'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
-           'org.springframework',
-           'org.hibernate',
-           'net.sf.ehcache.hibernate'
+            'org.codehaus.groovy.grails.web.pages',          // GSP
+            'org.codehaus.groovy.grails.web.sitemesh',       // layouts
+            'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
+            'org.codehaus.groovy.grails.web.mapping',        // URL mapping
+            'org.codehaus.groovy.grails.commons',            // core / classloading
+            'org.codehaus.groovy.grails.plugins',            // plugins
+            'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
+            'org.springframework',
+            'org.hibernate',
+            'net.sf.ehcache.hibernate'
+
+    environments {
+        development {
+
+            // configure the root logger to output to stdout and appLog appenders.
+            root {
+                info 'stdout'
+                additivity = true
+            }
+
+            debug 'grails.app.filters'
+            debug 'grails.app.services'
+            debug 'grails.app.controllers'
+
+            debug "org.hibernate.SQL"
+            trace "org.hibernate.type.descriptor.sql.BasicBinder"
+        }
+
+
+        test {
+
+        }
+
+        production {
+
+            // configure the root logger to output to stdout and appLog appenders.
+            root {
+                info 'stdout', 'appLog'
+                additivity = true
+            }
+
+            error 'grails.app.services'
+            error 'grails.app.controllers'
+
+        }
+
+    }
 }
